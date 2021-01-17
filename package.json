@@ -1,0 +1,27 @@
+{
+  "name": "fds18-forkify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannylee9212/fds18-forkify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dannylee9212/fds18-forkify/issues"
+  },
+  "homepage": "https://github.com/dannylee9212/fds18-forkify#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1",
+    "sass": "^1.32.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
