@@ -1,12 +1,13 @@
-import search from './models/Search';
+import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
-
+import * as recipeView from './views/recipeView';
 
 const renderSearchResult = () => {
   // obtain current page;
-  const page = search.getCurrentPage();
+  const page = Search.getCurrentPage();
   // obtain limited recipes per page
-  const recipesPerPage = search.getRecipesPerPage(page);
+  const recipesPerPage = Search.getRecipesPerPage(page);
   // show recipes
   searchView.showRecipes(recipesPerPage);
   // show pagination
@@ -18,7 +19,7 @@ const searchHandler = async e => {
   e.preventDefault();
   const searchWord = e.target.children[0].value;
   // search and update the model
-  await search.obtainRecipes(searchWord);
+  await Search.obtainRecipes(searchWord);
 
   renderSearchResult();
   // update page when pagination button is clicked
@@ -27,7 +28,7 @@ const searchHandler = async e => {
 const changePage = e => {
   if (!e.target.classList.contains('pagination__btn--prev') && !e.target.classList.contains('pagination__btn--next')) return;
   const pageNum = e.target.classList.contains('pagination__btn--prev') ? -1 : 1;
-  search.updatePage(pageNum);
+  Search.updatePage(pageNum);
   renderSearchResult();
 };
 
@@ -35,11 +36,16 @@ document.querySelector('.search').addEventListener('submit', searchHandler);
 document.querySelector('.pagination').addEventListener('click', changePage);
 
 // show each recipe
-// const showDetailedInfoOfRecipe = () => {
-//   console.log('ok');
-// };
+const showDetailedInfoOfRecipe = async e => {
+  //error
+  if (!(e.target.matches('.preview__link'))) return;
+  //obtain the specific recipe
+  const id = e.target.getAttribute('href').substring(1);
+  const recipe = await Recipe.obtainSpecificRecipe(id);
+  recipeView.showDetailedRecipeInfo(recipe);
+};
 
-// document.querySelector('.preview').addEventListener('click', showDetailedInfoOfRecipe);
+document.querySelector('.search-results > .results').addEventListener('click', showDetailedInfoOfRecipe);
 
 // const timeout = function (s) {
 //   return new Promise(function (_, reject) {

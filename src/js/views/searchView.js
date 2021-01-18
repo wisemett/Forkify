@@ -1,7 +1,7 @@
 
 export const showRecipes = recipes => {
     const newRecipes = recipes.map(recipe => (`<li class="preview">
-      <a class="preview__link preview__link--active" href="#23456">
+      <a class="preview__link preview__link--active" href="#${recipe.id}">
         <figure class="preview__fig">
           <img src=${recipe.image_url} alt=${recipe.title} />
         </figure>
