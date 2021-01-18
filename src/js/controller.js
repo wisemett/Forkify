@@ -1,11 +1,12 @@
-import * as model from './model';
-import searchView from './views/searchView';
+import search from './models/Search';
+import * as searchView from './views/searchView';
+
 
 const renderSearchResult = () => {
   // obtain current page;
-  const page = model.getCurrentPage();
+  const page = search.getCurrentPage();
   // obtain limited recipes per page
-  const recipesPerPage = model.getRecipesPerPage(page);
+  const recipesPerPage = search.getRecipesPerPage(page);
   // show recipes
   searchView.showRecipes(recipesPerPage);
   // show pagination
@@ -17,14 +18,16 @@ const searchHandler = async e => {
   e.preventDefault();
   const searchWord = e.target.children[0].value;
   // search and update the model
-  await model.obtainRecipes(searchWord);
+  await search.obtainRecipes(searchWord);
+
   renderSearchResult();
   // update page when pagination button is clicked
 };
+
 const changePage = e => {
   if (!e.target.classList.contains('pagination__btn--prev') && !e.target.classList.contains('pagination__btn--next')) return;
   const pageNum = e.target.classList.contains('pagination__btn--prev') ? -1 : 1;
-  model.updatePage(pageNum);
+  search.updatePage(pageNum);
   renderSearchResult();
 };
 
@@ -32,11 +35,11 @@ document.querySelector('.search').addEventListener('submit', searchHandler);
 document.querySelector('.pagination').addEventListener('click', changePage);
 
 // show each recipe
-
 // const showDetailedInfoOfRecipe = () => {
+//   console.log('ok');
+// };
 
-// }
-// document.querySelector('.').addEventListener('click', showDetailedInfoOfRecipe);
+// document.querySelector('.preview').addEventListener('click', showDetailedInfoOfRecipe);
 
 // const timeout = function (s) {
 //   return new Promise(function (_, reject) {
