@@ -35,17 +35,34 @@ const changePage = e => {
 document.querySelector('.search').addEventListener('submit', searchHandler);
 document.querySelector('.pagination').addEventListener('click', changePage);
 
-// show each recipe
+
+// show each recipe on the main section
 const showDetailedInfoOfRecipe = async e => {
-  //error
-  if (!(e.target.matches('.preview__link'))) return;
   //obtain the specific recipe
-  const id = e.target.getAttribute('href').substring(1);
+  const btn = e.target.closest('.preview__link');
+  if(!btn) return;
+  const id = btn.getAttribute('href').substring(1);
   const recipe = await Recipe.obtainSpecificRecipe(id);
   recipeView.showDetailedRecipeInfo(recipe);
 };
 
 document.querySelector('.search-results > .results').addEventListener('click', showDetailedInfoOfRecipe);
+
+// update serving
+const updateServing = e => {
+  // update serving 
+  // updateServing();
+  const increaseBtn = e.target.closest('.btn--increase-servings');
+  const decreaseBtn = e.target.closest('.btn--decrease-servings');
+  
+  if (!increaseBtn && !decreaseBtn) return;
+  const updateServings = increaseBtn ? 1 : -1;
+  Recipe.updateServing(updateServings);
+  const recipe = Recipe.getCurrentRecipe();
+  recipeView.showDetailedRecipeInfo(recipe);
+}
+
+document.querySelector('.recipe').addEventListener('click', updateServing);
 
 // const timeout = function (s) {
 //   return new Promise(function (_, reject) {

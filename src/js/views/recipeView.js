@@ -1,5 +1,6 @@
 import icons from 'url:../../img/icons.svg'
 
+
 const markup = ({publisher, ingredients, source_url, image_url, title, cooking_time, servings}) => `<figure class="recipe__fig">
 <img src=${image_url} alt=${title} class="recipe__img" />
 <h1 class="recipe__title">
@@ -23,7 +24,7 @@ const markup = ({publisher, ingredients, source_url, image_url, title, cooking_t
   <span class="recipe__info-text">servings</span>
 
   <div class="recipe__info-buttons">
-    <button class="btn--tiny btn--increase-servings">
+    <button class="btn--tiny btn--decrease-servings">
       <svg>
         <use href="${icons}#icon-minus-circle"></use>
       </svg>
@@ -87,5 +88,5 @@ const markup = ({publisher, ingredients, source_url, image_url, title, cooking_t
 
 export const showDetailedRecipeInfo = recipe => {
   console.log(recipe);
-  document.querySelector('.recipe').innerHTML = markup(recipe.data.recipe);
+  document.querySelector('.recipe').innerHTML = markup(recipe);
 }

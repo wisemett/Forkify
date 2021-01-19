@@ -1,6 +1,8 @@
 import icons from 'url:../../img/icons.svg'
 
 
+
+
 export const showRecipes = recipes => {
     const newRecipes = recipes.map(recipe => (`<li class="preview">
       <a class="preview__link preview__link--active" href="#${recipe.id}">
