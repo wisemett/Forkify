@@ -4,14 +4,14 @@ const axios = require('axios');
 class Recipe {
   constructor() {
     this._state = {
-      recipes: [],
+      recipe: ''
     }
   }
 
   async obtainSpecificRecipe(id) {
     try {
       const { data } = await axios.get(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}?key=${key}`);
-      console.log(data);
+      this._state = data.data.recipe;
       return data;
     } catch (error) {
       console.log(error);

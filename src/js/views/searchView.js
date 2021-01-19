@@ -1,3 +1,5 @@
+import icons from 'url:../../img/icons.svg'
+
 
 export const showRecipes = recipes => {
     const newRecipes = recipes.map(recipe => (`<li class="preview">
@@ -10,19 +12,19 @@ export const showRecipes = recipes => {
           <p class="preview__publisher">${recipe.publisher}</p>
           <div class="preview__user-generated">
             <svg>
-              <use href="src/img/icons.svg#icon-user"></use>
+              <use href="${icons}#icon-user"></use>
             </svg>
           </div>
         </div>
       </a>
-    </li>`));
+    </li>`)).join('');
     document.querySelector('.results').innerHTML = newRecipes;
   }
 
 export const showPagination = (prev, next, recipes) => {
     document.querySelector('.pagination').innerHTML = `${ prev === 1 ? "" : `<button class="btn--inline pagination__btn--prev">
     <svg class="search__icon">
-      <use href="src/img/icons.svg#icon-arrow-left"></use>
+      <use href="${icons}#icon-arrow-left"></use>
     </svg>
     <span>${prev}</span>
     </button>`}`
@@ -30,7 +32,7 @@ export const showPagination = (prev, next, recipes) => {
     `${recipes.length !== 10 ? '' : `<button class="btn--inline pagination__btn--next">
     <span>${next}</span>
     <svg class="search__icon">
-      <use href="src/img/icons.svg#icon-arrow-right"></use>
+      <use href="${icons}#icon-arrow-right"></use>
     </svg>
     </button>`}`;
   
