@@ -2,6 +2,8 @@ import Search from './models/Search';
 import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import icons from 'url:../img/icons.svg';
+import {key} from './config';
 
 const renderSearchResult = () => {
   // obtain current page;
@@ -73,3 +75,34 @@ document.querySelector('.recipe').addEventListener('click', updateServing);
 // };
 
 // https://forkify-api.herokuapp.com/v2
+
+const displayRecipeEditor = () => {
+  document.querySelector('.add-recipe-window').classList.remove('hidden');
+  document.querySelector('.overlay').classList.remove('hidden');
+};
+
+const hideRecipeEditor = () => {
+  document.querySelector('.add-recipe-window').classList.add('hidden');
+  document.querySelector('.overlay').classList.add('hidden');
+};
+
+document.querySelector('.nav__btn--add-recipe').addEventListener('click', displayRecipeEditor);
+document.querySelector('.btn--close-modal').addEventListener('click', hideRecipeEditor);
+
+document.querySelector('form.upload').addEventListener('submit', e => {
+  e.preventDefault();
+
+  const recipe = Recipe.newRecipe();
+  console.log(recipe);
+
+  // uploadNewRecipe makes an error
+  // Recipe.uploadNewRecipe(recipe);
+
+  // should redner this from API server. but uploading is not working
+  recipeView.showDetailedRecipeInfo(recipe);
+
+  Recipe.addBookmark(recipe);
+
+  e.target.reset();
+  hideRecipeEditor();
+});
