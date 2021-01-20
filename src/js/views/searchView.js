@@ -1,11 +1,14 @@
 import icons from 'url:../../img/icons.svg'
 
-
-
+//showRecipes variable
+let newRecipes = '';
+//showPagination variable
+let prevBtn = '';
+let nextBtn = '';
 
 export const showRecipes = recipes => {
-    const newRecipes = recipes.map(recipe => (`<li class="preview">
-      <a class="preview__link preview__link--active" href="#${recipe.id}">
+  newRecipes = recipes.map(recipe => (`<li class="preview">
+      <a class="preview__link preview__link--active" href="${recipe.id}">
         <figure class="preview__fig">
           <img src=${recipe.image_url} alt=${recipe.title} />
         </figure>
@@ -20,22 +23,25 @@ export const showRecipes = recipes => {
         </div>
       </a>
     </li>`)).join('');
-    document.querySelector('.results').innerHTML = newRecipes;
-  }
+  document.querySelector('.results').innerHTML = newRecipes;
+}
+
+
 
 export const showPagination = (prev, next, recipes) => {
-    document.querySelector('.pagination').innerHTML = `${ prev === 1 ? "" : `<button class="btn--inline pagination__btn--prev">
-    <svg class="search__icon">
-      <use href="${icons}#icon-arrow-left"></use>
-    </svg>
-    <span>${prev}</span>
-    </button>`}`
-    +
-    `${recipes.length !== 10 ? '' : `<button class="btn--inline pagination__btn--next">
-    <span>${next}</span>
-    <svg class="search__icon">
-      <use href="${icons}#icon-arrow-right"></use>
-    </svg>
+    prevBtn = `${ prev === 1 ? "" : `<button class="btn--inline pagination__btn--prev">
+      <svg class="search__icon">
+        <use href="${icons}#icon-arrow-left"></use>
+      </svg>
+      <span>${prev}</span>
     </button>`}`;
+    nextBtn = `${recipes.length !== 10 ? '' : `<button class="btn--inline pagination__btn--next">
+      <span>${next}</span>
+      <svg class="search__icon">
+        <use href="${icons}#icon-arrow-right"></use>
+      </svg>
+    </button>`}`;
+    document.querySelector('.pagination').innerHTML = prevBtn + nextBtn;
+    
   
 }

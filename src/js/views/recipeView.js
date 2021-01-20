@@ -87,6 +87,5 @@ const markup = ({publisher, ingredients, source_url, image_url, title, cooking_t
 </div>`;
 
 export const showDetailedRecipeInfo = recipe => {
-  console.log(recipe);
   document.querySelector('.recipe').innerHTML = markup(recipe);
 }
