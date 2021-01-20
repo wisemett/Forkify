@@ -1,9 +1,14 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import Bookmark from './models/Bookmark'
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import icons from 'url:../img/icons.svg';
 import {key} from './config';
+import * as bookmarkView from './views/bookmarkView';
+
+//clear localstorage
+localStorage.clear();
 
 const renderSearchResult = () => {
   // obtain current page;
@@ -40,15 +45,16 @@ document.querySelector('.pagination').addEventListener('click', changePage);
 
 // show each recipe on the main section
 const showDetailedInfoOfRecipe = async e => {
+  e.preventDefault();
   //obtain the specific recipe
   const btn = e.target.closest('.preview__link');
   if(!btn) return;
-  const id = btn.getAttribute('href').substring(1);
+  const id = btn.getAttribute('href');
   const recipe = await Recipe.obtainSpecificRecipe(id);
   recipeView.showDetailedRecipeInfo(recipe);
 };
 
-document.querySelector('.search-results > .results').addEventListener('click', showDetailedInfoOfRecipe);
+document.querySelector('.results').addEventListener('click', showDetailedInfoOfRecipe);
 
 // update serving
 const updateServing = e => {
@@ -65,6 +71,38 @@ const updateServing = e => {
 }
 
 document.querySelector('.recipe').addEventListener('click', updateServing);
+
+
+// add bookmark
+const controlBookmark = () => {
+  // obtain current value
+  const recipe = Recipe.getCurrentRecipe();
+  //obtain booklist(recipelist)
+  const recipeList = Bookmark.getCurrentBookList();
+  //check whether the recipe is already stored
+  if (Bookmark.isRecipeStored(recipe)) {
+    Bookmark.removeBookmark();
+    bookmarkView.showBookmarkContent(recipeList);
+    return;
+  };
+
+  // add bookmark
+  Bookmark.addBookmark(recipe);
+
+  //render 
+  bookmarkView.showBookmarkContent(recipeList);
+}
+
+
+document.querySelector('.recipe').addEventListener('click', controlBookmark);
+
+
+// redirect to detailed recipe from bookmark
+const redirectToDetailedRecipe = async e => {
+  e.preventDefault();
+  showDetailedInfoOfRecipe(e);
+}
+document.querySelector('.bookmarks__list').addEventListener('click', redirectToDetailedRecipe);
 
 // const timeout = function (s) {
 //   return new Promise(function (_, reject) {
