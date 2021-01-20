@@ -1,4 +1,5 @@
 import { key } from '../config';
+import createError from '../views/errorView';
 const axios = require('axios');
 
 class Search {
@@ -9,12 +10,13 @@ class Search {
     }
   }
 
-  async obtainRecipes(searchWord) {
+  async obtainRecipe(searchWord) {
     try {
       const { data } = await axios.get(`https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchWord}&key=${key}`);
       this._state.recipes = data.data.recipes;
+      return data;
     } catch (err) {
-      console.log(err);
+      createError(err);
     }
   }
 
