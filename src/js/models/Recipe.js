@@ -88,10 +88,24 @@ class Recipe {
 
   // not working
   // async uploadNewRecipe(recipe) {
-  //   const res = await axios.post(`https://forkify-api.herokuapp.com/api/v2/recipes/?key=${key}`, recipe);
+  //   const res = await axios.post(`https://forkify-api.herokuapp.com/api/v2/recipes/?key=${key}`, JSON.stringify(recipe));
   //   console.log(await res);
   // };
 
+  async uploadNewRecipe(recipe) {
+    const fetchPro = fetch(`https:forkify-api.herokuapp.com/api/v2/recipes/?key=${key}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(recipe)
+    });
+
+    const res = await fetchPro;
+    const data = await res.json();
+
+    console.log(data);
+  }
 
   // codes for bookmark
 addBookmark(recipe) {

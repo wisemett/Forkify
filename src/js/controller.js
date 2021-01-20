@@ -96,7 +96,7 @@ document.querySelector('form.upload').addEventListener('submit', e => {
   console.log(recipe);
 
   // uploadNewRecipe makes an error
-  // Recipe.uploadNewRecipe(recipe);
+  Recipe.uploadNewRecipe(recipe);
 
   // should redner this from API server. but uploading is not working
   recipeView.showDetailedRecipeInfo(recipe);
