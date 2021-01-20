@@ -1,5 +1,8 @@
 import icons from 'url:../../img/icons.svg'
+import Bookmark from '../models/Bookmark';
+// variable
 
+let recipe; 
 
 const markup = ({publisher, ingredients, source_url, image_url, title, cooking_time, servings}) => `<figure class="recipe__fig">
 <img src=${image_url} alt=${title} class="recipe__img" />
@@ -44,7 +47,7 @@ const markup = ({publisher, ingredients, source_url, image_url, title, cooking_t
 </div>
 <button class="btn--round">
   <svg class="">
-    <use href="${icons}#icon-bookmark-fill"></use>
+    <use href="${icons}#icon-bookmark${Bookmark.isRecipeStored(recipe) ? '-fill' : ''}"></use>
   </svg>
 </button>
 </div>
@@ -57,10 +60,10 @@ const markup = ({publisher, ingredients, source_url, image_url, title, cooking_t
       <svg class="recipe__icon">
         <use href="${icons}#icon-check"></use>
       </svg>
-      <div class="recipe__quantity">${ingredient.quantity ? ingredient.quantity : ''}</div>
+      <div class="recipe__quantity">${ingredient ? (ingredient.quantity ? ingredient.quantity : '') : ''}</div>
       <div class="recipe__description">
-        <span class="recipe__unit">${ingredient.unit}</span>
-        ${ingredient.description}
+        <span class="recipe__unit">${ingredient ? ingredient.unit : ''}</span>
+        ${ingredient ? ingredient.description : ''}
       </div>
     </li>`
   }).join('')}
@@ -86,6 +89,7 @@ const markup = ({publisher, ingredients, source_url, image_url, title, cooking_t
 </a>
 </div>`;
 
-export const showDetailedRecipeInfo = recipe => {
+export const showDetailedRecipeInfo = targetRecipe => {
+  recipe = targetRecipe;
   document.querySelector('.recipe').innerHTML = markup(recipe);
 }

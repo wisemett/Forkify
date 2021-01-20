@@ -1,9 +1,10 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
-import Bookmark from './models/Bookmark'
+import Bookmark from './models/Bookmark';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as bookmarkView from './views/bookmarkView';
+import createSpinner from './views/spinner';
 
 //clear localstorage
 localStorage.clear();
@@ -24,7 +25,7 @@ const searchHandler = async e => {
   e.preventDefault();
   const searchWord = e.target.children[0].value;
   // search and update the model
-  await Search.obtainRecipes(searchWord);
+  await Search.obtainRecipe(searchWord);
 
   renderSearchResult();
   // update page when pagination button is clicked
@@ -44,6 +45,7 @@ document.querySelector('.pagination').addEventListener('click', changePage);
 // show each recipe on the main section
 const showDetailedInfoOfRecipe = async e => {
   e.preventDefault();
+  createSpinner();
   //obtain the specific recipe
   const btn = e.target.closest('.preview__link');
   if(!btn) return;
@@ -72,7 +74,9 @@ document.querySelector('.recipe').addEventListener('click', updateServing);
 
 
 // add bookmark
-const controlBookmark = () => {
+const controlBookmark = e => {
+  const btn = e.target.closest('.btn--round');
+  if (!btn) return;
   // obtain current value
   const recipe = Recipe.getCurrentRecipe();
   //obtain booklist(recipelist)
@@ -80,6 +84,7 @@ const controlBookmark = () => {
   //check whether the recipe is already stored
   if (Bookmark.isRecipeStored(recipe)) {
     Bookmark.removeBookmark();
+    recipeView.showDetailedRecipeInfo(recipe);
     bookmarkView.showBookmarkContent(recipeList);
     return;
   };
@@ -88,6 +93,7 @@ const controlBookmark = () => {
   Bookmark.addBookmark(recipe);
 
   //render 
+  recipeView.showDetailedRecipeInfo(recipe);
   bookmarkView.showBookmarkContent(recipeList);
 }
 
@@ -96,8 +102,7 @@ document.querySelector('.recipe').addEventListener('click', controlBookmark);
 
 
 // redirect to detailed recipe from bookmark
-const redirectToDetailedRecipe = async e => {
-  e.preventDefault();
+const redirectToDetailedRecipe = e => {
   showDetailedInfoOfRecipe(e);
 }
 document.querySelector('.bookmarks__list').addEventListener('click', redirectToDetailedRecipe);
@@ -111,3 +116,30 @@ document.querySelector('.bookmarks__list').addEventListener('click', redirectToD
 // };
 
 // https://forkify-api.herokuapp.com/v2
+
+const toggleRecipeEditor = () => {
+  document.querySelector('.add-recipe-window').classList.toggle('hidden');
+  document.querySelector('.overlay').classList.toggle('hidden');
+};
+
+document.querySelector('.nav__btn--add-recipe').addEventListener('click', toggleRecipeEditor);
+document.querySelector('.btn--close-modal').addEventListener('click', toggleRecipeEditor);
+
+document.querySelector('form.upload').addEventListener('submit', async e => {
+  e.preventDefault();
+  createSpinner();
+
+  const recipe = Recipe.newRecipe();
+
+  const newRecipe = await Recipe.sendNewRecipe(recipe);
+
+  Bookmark.addBookmark(newRecipe);
+  Recipe.updateCurrentRecipe(newRecipe);
+
+  recipeView.showDetailedRecipeInfo(newRecipe);
+
+  const recipeList = Bookmark.getCurrentBookList();
+  bookmarkView.showBookmarkContent(recipeList);
+  e.target.reset();
+  toggleRecipeEditor();
+});
