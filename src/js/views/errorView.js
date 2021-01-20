@@ -1,6 +1,6 @@
 import icons from 'url:../../img/icons.svg';
 
-const createError = () => {
+const createError = msg => {
     const markup = `
         <div class="error">
             <div>
@@ -8,7 +8,7 @@ const createError = () => {
                     <use href="${icons}#icon-alert-triangle"></use>
                 </svg>
             </div>
-            <p>Error occured!!! Results not found!!!</p>
+            <p>${msg}</p>
         </div>
     `;
 
