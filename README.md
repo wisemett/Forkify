@@ -45,7 +45,6 @@ with Forkify App, you can
 ```
 npm install
 npm start
-
 ```
 
 ## Future scope
