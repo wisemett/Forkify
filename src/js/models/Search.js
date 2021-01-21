@@ -1,5 +1,8 @@
 import { key } from '../config';
-import createError from '../views/errorView';
+import { createErrorOnMainSection } from '../views/errorView';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 const axios = require('axios');
 
 class Search {
@@ -17,7 +20,7 @@ class Search {
       return data;
     } catch (error) {
       console.log(error);
-      createError('Error occured!!! Results not found!!!');
+      createErrorOnMainSection('Error occured!!! Results not found!!!');
     }
   }
 

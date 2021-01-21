@@ -1,6 +1,6 @@
 import { key } from '../config';
-import createError from '../views/errorView';
-import { validateUrl, validateNumber, validateIngredients } from '../views/valitator';
+import { createErrorOnMainSection } from '../views/errorView';
+import * as Validation from './validation';
 const axios = require('axios');
 
 class Recipe {
@@ -16,7 +16,8 @@ class Recipe {
         title: '', 
         cooking_time: '', 
         servings: ''
-      }
+      },
+      isValided: false
     }
   }
 
@@ -39,7 +40,7 @@ class Recipe {
       return data.data.recipe;
     } catch (error) {
       console.log(error);
-      createError('Error occured!!! Results not found!!!');
+      createErrorOnMainSection('Error occured!!! Results not found!!!');
     }
   }
   updateServing(updatePortion) {
@@ -92,30 +93,45 @@ class Recipe {
         servings: document.querySelector('input[name="servings"]').value,
         ingredients
     };
+    if(recipe.image_url === null || recipe.image_url.length < 5) recipe.image_url = 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'; 
+
+    // initate the error message
+    const errorMessages = document.querySelectorAll('.error-message');
+    const uploadColumns = document.querySelectorAll('.upload__column');
+
+    errorMessages.forEach(errorMessage => {
+      errorMessage.parentNode.removeChild(errorMessage);
+    })
+
+    const isSourceURLValidated = Validation.validateUrl(recipe.source_url, document.querySelector('input[name="sourceUrl"]')) 
+    const isIngredientsValidated = Validation.validateIngredients(recipe.ingredients); 
+    const isServingsValidated = Validation.validateNumber(recipe.servings, document.querySelector('input[name="servings"]')) 
+    const isCookingTimeValidated = Validation.validateNumber(recipe.cooking_time, document.querySelector('input[name="cookingTime"]'))
 
     // Validation for ingredients and URL, servings, cooking time
-    validateUrl(recipe.source_url);
-    validateUrl(recipe.image_url);
-    validateIngredients(recipe.ingredients);
-    validateNumber(recipe.servings);
-    validateNumber(recipe.cooking_time);
-
+    if (isSourceURLValidated && isIngredientsValidated && isServingsValidated && isCookingTimeValidated) {
+      this._state.isValided = true;
+    }
+    console.dir('Recipe.js 114' + recipe);
     return recipe;
   }
-
+  isValided() {
+    return this._state.isValided;
+  }
   async sendNewRecipe(recipe) {
     try {
+      console.dir(recipe);
       const res = await axios({
         method: 'post',
         url: `https:forkify-api.herokuapp.com/api/v2/recipes/?key=${key}`,
         data: recipe
       });
-
+      
       const data = res.data.data.recipe;
       return data;
     } catch(error) {
       console.log(error);
-      createError('Error occured!!! Results not found!!!');
+      createErrorOnMainSection('Error occured!!! Results not found!!!');
     }
   }
 

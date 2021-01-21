@@ -1,6 +1,6 @@
-import icons from 'url:../../img/icons.svg';
+import icons from '../../img/icons.svg';
 
-const createError = msg => {
+export const createErrorOnMainSection = msg => {
     const markup = `
         <div class="error">
             <div>
@@ -15,4 +15,12 @@ const createError = msg => {
     document.querySelector('.recipe').innerHTML = markup;
 }
 
-    export default createError;
+export const createErrorForAddRecipe = (msg, inputEl) => {
+    const $input = inputEl;
+    const $errorMessageNode = document.createElement('p');
+    $errorMessageNode.textContent = msg;
+    $errorMessageNode.classList.add('error-message');
+    $errorMessageNode.style.color = 'red';
+    console.log(inputEl, msg);
+    $input.after($errorMessageNode);
+}
