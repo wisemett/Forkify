@@ -7,6 +7,15 @@
 <br/>
 <br/>
 
+## Project setup
+
+```
+npm install
+npm start
+```
+
+<br/>
+
 ## Description
 
 ### What's this?
@@ -37,7 +46,7 @@ with Forkify App, you can
 ### Sources
 
 We used HTML/CSS Sources and Forkify API from the links below.<br/>
-Then we designed our own MVC pattern and build it.
+Then we designed our own MVC pattern and implement it.
 - HTML & CSS : [https://github.com/jonasschmedtmann/complete-javascript-course/tree/master/18-forkify](https://github.com/jonasschmedtmann/complete-javascript-course/tree/master/18-forkify)
 - Forkify API : [https://forkify-api.herokuapp.com/v2](https://forkify-api.herokuapp.com/v2)
 
@@ -52,18 +61,9 @@ Then we designed our own MVC pattern and build it.
 
 <br/>
 
-## Project setup
-
-```
-npm install
-npm start
-```
-
-<br/>
-
 ## Future scope
 
-Split each input for ingredient into three
+Create three inputs for each ingredient: quantity, unit, description
 
 <br/>
 
