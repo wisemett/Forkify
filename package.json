@@ -18,14 +18,18 @@
   },
   "homepage": "https://github.com/dannylee9212/fds18-forkify#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-html": "^6.1.1",
     "eslint-plugin-import": "^2.22.1",
-    "parcel": "^2.0.0-beta.1",
     "sass": "^1.32.4"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "img": "^3.0.3",
+    "parcel-bundler": "^1.12.4",
+    "regenerator-runtime": "^0.13.7"
   }
 }

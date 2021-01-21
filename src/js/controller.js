@@ -6,6 +6,7 @@ import * as recipeView from './views/recipeView';
 import * as bookmarkView from './views/bookmarkView';
 import createSpinner from './views/spinner';
 
+
 //clear localstorage
 localStorage.clear();
 
@@ -117,7 +118,7 @@ document.querySelector('.bookmarks__list').addEventListener('click', redirectToD
 
 // https://forkify-api.herokuapp.com/v2
 
-const toggleRecipeEditor = () => {
+export const toggleRecipeEditor = () => {
   document.querySelector('.add-recipe-window').classList.toggle('hidden');
   document.querySelector('.overlay').classList.toggle('hidden');
 };
@@ -125,17 +126,16 @@ const toggleRecipeEditor = () => {
 document.querySelector('.nav__btn--add-recipe').addEventListener('click', toggleRecipeEditor);
 document.querySelector('.btn--close-modal').addEventListener('click', toggleRecipeEditor);
 
-document.querySelector('form.upload').addEventListener('submit', async e => {
+const addRecipeHandler = async e => {
   e.preventDefault();
-  createSpinner();
 
   const recipe = Recipe.newRecipe();
 
+  if(!Recipe.isValided()) return;
+  console.dir('controller.js 135' + recipe);
   const newRecipe = await Recipe.sendNewRecipe(recipe);
   if(!newRecipe) return;
-
   Bookmark.addBookmark(newRecipe);
-
   Recipe.updateCurrentRecipe(newRecipe);
 
   recipeView.showDetailedRecipeInfo(newRecipe);
@@ -144,6 +144,5 @@ document.querySelector('form.upload').addEventListener('submit', async e => {
   bookmarkView.showBookmarkContent(recipeList);
   e.target.reset();
   toggleRecipeEditor();
-});
-
-export default toggleRecipeEditor;
+}
+document.querySelector('form.upload').addEventListener('submit', addRecipeHandler);

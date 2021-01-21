@@ -1,4 +1,4 @@
-import icons from 'url:../../img/icons.svg';
+import icons from '../../img/icons.svg';
 
 const createSpinner = err => {
     const markup = `
@@ -12,4 +12,4 @@ const createSpinner = err => {
     document.querySelector('.recipe').innerHTML = markup;
 }
 
-    export default createSpinner;
+export default createSpinner;
