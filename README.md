@@ -38,7 +38,7 @@ with Forkify App, you can
 - Asynchronous JavaScript
 - ES6 modules and module bundler Parcel
 - HTTP requests using Axios
-- MVP pattern
+- MVC pattern programming
 
 ## Project setup
 
@@ -49,4 +49,4 @@ npm start
 
 ## Future scope
 
-## Contributor
+Split each ingretient input into three
