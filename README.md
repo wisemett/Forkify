@@ -1,6 +1,6 @@
-# Forkify App
+<h1 align="center">Forkify App</h1>
 
-<img src="./readme_assets/readme1.png" height="400">
+<img src="./readme_assets/readme1.png" height="400" align="center">
 
 ## Description
 
