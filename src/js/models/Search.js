@@ -15,8 +15,9 @@ class Search {
       const { data } = await axios.get(`https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchWord}&key=${key}`);
       this._state.recipes = data.data.recipes;
       return data;
-    } catch (err) {
-      createError(err);
+    } catch (error) {
+      console.log(error);
+      createError('Error occured!!! Results not found!!!');
     }
   }
 

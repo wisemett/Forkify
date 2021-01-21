@@ -143,3 +143,5 @@ document.querySelector('form.upload').addEventListener('submit', async e => {
   e.target.reset();
   toggleRecipeEditor();
 });
+
+export default toggleRecipeEditor;

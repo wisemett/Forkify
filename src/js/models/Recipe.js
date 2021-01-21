@@ -1,5 +1,6 @@
 import { key } from '../config';
 import createError from '../views/errorView';
+import { validateUrl, validateNumber, validateIngredients } from '../views/valitator';
 const axios = require('axios');
 
 class Recipe {
@@ -38,7 +39,7 @@ class Recipe {
       return data.data.recipe;
     } catch (error) {
       console.log(error);
-      createError();
+      createError('Error occured!!! Results not found!!!');
     }
   }
   updateServing(updatePortion) {
@@ -92,6 +93,13 @@ class Recipe {
         ingredients
     };
 
+    // Validation for ingredients and URL, servings, cooking time
+    validateUrl(recipe.source_url);
+    validateUrl(recipe.image_url);
+    validateIngredients(recipe.ingredients);
+    validateNumber(recipe.servings);
+    validateNumber(recipe.cooking_time);
+
     return recipe;
   }
 
@@ -107,7 +115,7 @@ class Recipe {
       return data;
     } catch(error) {
       console.log(error);
-      createError();
+      createError('Error occured!!! Results not found!!!');
     }
   }
 
