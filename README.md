@@ -1,6 +1,6 @@
 # Forkify App
 
-<img src="./readme_assets/readme1.png" height="200">
+<img src="./readme_assets/readme1.png" height="400">
 
 ## Description
 
