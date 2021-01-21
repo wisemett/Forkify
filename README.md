@@ -1,9 +1,11 @@
 <h1 align="center">Forkify App</h1>
 
 <p align="center">
-  <img src="./readme_assets/readme1.png" height="400">
+  <img src="./readme_assets/readme1.png" height="500">
 </p>
 
+<br/>
+<br/>
 ## Description
 
 ### What's this?
