@@ -38,6 +38,8 @@ with Forkify App, you can
 - HTML & CSS : [https://github.com/jonasschmedtmann/complete-javascript-course/tree/master/18-forkify](https://github.com/jonasschmedtmann/complete-javascript-course/tree/master/18-forkify)
 - Forkify API : [https://forkify-api.herokuapp.com/v2](https://forkify-api.herokuapp.com/v2)
 
+<br/>
+
 ## What we learned from this project
 
 - Asynchronous JavaScript
@@ -45,12 +47,16 @@ with Forkify App, you can
 - HTTP requests using Axios
 - MVC pattern programming
 
+<br/>
+
 ## Project setup
 
 ```
 npm install
 npm start
 ```
+
+<br/>
 
 ## Future scope
 
