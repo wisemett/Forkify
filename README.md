@@ -1,6 +1,4 @@
-# README Draft
-
-# Forkify App
+# <center>Forkify App</center>
 
 ![readme-heading-image](./readme_assets/readme1.png)
 
