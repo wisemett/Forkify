@@ -7,7 +7,13 @@ const generateError = (msg, inputEl, type = '') => {
     // throw new Error();
 }
 
-// export const validateLength = 
+export const validateLength = (value, inputEl) => {
+    if(value.length < 5) {
+        generateError("Please input a value which is longer than 5 chars", inputEl);
+        return false;
+    }
+    return true;
+}
 
 export const validateUrl = (url, inputEl) => {
     const regExpUrl = /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i;
