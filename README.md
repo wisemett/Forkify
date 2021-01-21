@@ -49,4 +49,4 @@ npm start
 
 ## Future scope
 
-Split each ingretient input into three
+Split each input for ingredient into three
