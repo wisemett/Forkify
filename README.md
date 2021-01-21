@@ -4,7 +4,7 @@
 
 ## Description
 
-### What's Forkify App?
+### What's this?
 
 with Forkify App, you can
 
@@ -15,10 +15,10 @@ with Forkify App, you can
 ### How to use this app
 
 1. Start by searching for a recipe or an ingredient.
-2. Turn the page to see more than 10 recipes.
+2. Turn the page to see next or previous 10 recipes.
 3. Click a recipe you want to take a look at.
 4. Change the number of servings then the amount of ingredients will automatically change.
-5. Click the bookmark icon to add a bookmark.
+5. Click the bookmark icon to add or remove a bookmark.
 6. You can add your own recipe by clicking 'add recipe' button.
 
 ### Technologies we used
