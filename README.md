@@ -2,7 +2,7 @@
 
 # Forkify App
 
-![readme-heading-image](../readme_assets/readme1.png)
+![readme-heading-image](./readme_assets/readme1.png)
 
 ## Description
 
