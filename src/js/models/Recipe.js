@@ -102,14 +102,15 @@ class Recipe {
     errorMessages.forEach(errorMessage => {
       errorMessage.parentNode.removeChild(errorMessage);
     })
-
+    const isTitleValidated = Validation.validateLength(recipe.title, document.querySelector('input[name="title"]'));
+    const isPublisherValidated = Validation.validateLength(recipe.title, document.querySelector('input[name="publisher"]'));
     const isSourceURLValidated = Validation.validateUrl(recipe.source_url, document.querySelector('input[name="sourceUrl"]')) 
     const isIngredientsValidated = Validation.validateIngredients(recipe.ingredients); 
     const isServingsValidated = Validation.validateNumber(recipe.servings, document.querySelector('input[name="servings"]')) 
     const isCookingTimeValidated = Validation.validateNumber(recipe.cooking_time, document.querySelector('input[name="cookingTime"]'))
 
     // Validation for ingredients and URL, servings, cooking time
-    if (isSourceURLValidated && isIngredientsValidated && isServingsValidated && isCookingTimeValidated) {
+    if (isTitleValidated && isPublisherValidated && isSourceURLValidated && isIngredientsValidated && isServingsValidated && isCookingTimeValidated) {
       this._state.isValided = true;
     }
     console.dir('Recipe.js 114' + recipe);
