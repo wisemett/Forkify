@@ -23,8 +23,9 @@ with Forkify App, you can
 2. Turn the page to see next or previous 10 recipes.
 3. Click a recipe you want to take a look at.
 4. Change the number of servings then the amount of ingredients will automatically change.
-5. Click the bookmark icon to add or remove a bookmark.
-6. You can add your own recipe by clicking 'add recipe' button.
+6. Click Directions button to see how to cook it.
+7. Click the bookmark icon to add or remove a bookmark.
+8. You can add your own recipe by clicking 'add recipe' button.
 
 ### Technologies we used
 
@@ -61,3 +62,4 @@ npm start
 ## Future scope
 
 Split each input for ingredient into three
+
