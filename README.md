@@ -18,7 +18,7 @@ npm start
 
 ## Description
 
-### What's this?
+### What's this for?
 
 with Forkify App, you can
 
