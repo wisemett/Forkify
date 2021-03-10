@@ -1,11 +1,8 @@
-<h1 align="center">Forkify App</h1>
+# Forkify App
 
-<p align="center">
-  <img src="./readme_assets/readme1.png" height="500">
-</p>
+## Demo Video
 
-<br/>
-<br/>
+![demo](./assets/demo.gif)
 
 ## Project setup
 
