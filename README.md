@@ -2,7 +2,7 @@
 
 ## Demo Video
 
-![demo](./assets/demo.gif)
+![demo](./readme_assets/demo.gif)
 
 ## Project setup
 
